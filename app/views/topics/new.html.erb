@@ -1,0 +1,14 @@
+<div class="flex justify-center items-center">
+  <% if @topic.errors.any? %>
+    <div class="text-red-500">
+      <% @topic.errors.full_messages.each do |message| %>
+        <p><%= message %></p>
+      <% end %>
+    </div>
+  <% end %>
+  <%= form_with(model: @topic,   class: "flex flex-col items-center space-y-4") do |form| %>
+    <%= form.label :name, "Topic Maps", class: "mr-2 font-bold" %>
+    <%= form.text_field :name, class: "mr-2" %>
+    <%= form.submit "Create or Find Topic", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer" %>
+  <% end %>
+</div>
