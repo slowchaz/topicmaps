@@ -1,3 +1,8 @@
+<script>
+  var nodes = <%= raw @nodes.to_json %>;
+  var links = <%= raw @links.to_json %>;
+</script>
+<%= javascript_include_tag 'topic_graph' %>
 <div class="container mx-auto px-4 py-8">
   <div class="text-center mb-8">
     <h1 class="text-2xl font-bold mb-4"><%= @topic.name %></h1>
@@ -24,4 +29,5 @@
       <%= form.submit "Add a note", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer" %>
     <% end %>
   </div>
+  <svg id="graph" width="800" height="600"></svg>
 </div>

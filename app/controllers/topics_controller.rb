@@ -18,6 +18,9 @@ class TopicsController < ApplicationController
     @topic = Topic.find(params[:id])
     @notes = @topic.notes
     @note = Note.new
+
+    @nodes = [@topic] + @topic.notes
+    @links = @topic.notes.map { |note| {source: @topic, target: note} }
   end
 
   private
