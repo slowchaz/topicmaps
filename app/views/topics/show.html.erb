@@ -1,2 +1,27 @@
-<h1><%= @topic.name %></h1>
-<!--display notes associated with this topic-->
+<div class="container mx-auto px-4 py-8">
+  <div class="text-center mb-8">
+    <h1 class="text-2xl font-bold mb-4"><%= @topic.name %></h1>
+  </div>
+
+  <div class="max-w-xl mx-auto">
+    <% @notes.each do |note| %>
+      <p class="text-lg mb-2"><%= note.content %></p>
+    <% end %>
+  </div>
+
+  <% if @note.errors.any? %>
+    <div class="text-red-500 max-w-xl mx-auto">
+      <% @note.errors.full_messages.each do |message| %>
+        <p><%= message %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="max-w-xl mx-auto mt-8">
+    <%= form_with(model: [@topic, @note], class: "flex flex-col space-y-4") do |form| %>
+      <%= form.label :content, "Notes", class: "font-bold" %>
+      <%= form.text_field :content, class: "border rounded p-2 w-full" %>
+      <%= form.submit "Add a note", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer" %>
+    <% end %>
+  </div>
+</div>
